@@ -5,7 +5,7 @@ SELECT
 FROM 
 	gdb023.dim_customer
 WHERE 
-	customer = 'Atliq Exclusive'
+	customer = 'Atliq Exclusive' and region = 'APAC'
 
 /* Exercise #2*/
 
@@ -37,7 +37,7 @@ SELECT * FROM T1, T2, T3
 
 SELECT 
 	segment,
-	COUNT(DISTINCT(product)) as product_count
+	COUNT(DISTINCT(product_code)) as product_count
 FROM
 	gdb023.dim_product
 GROUP BY
@@ -84,7 +84,7 @@ T4 AS (
 	T2.segment, 
 	T2.unique_count_2020, 
 	T3.unique_count_2021,
-	((T3.unique_count_2021 - T2.unique_count_2020) / T2.unique_count_2020 * 100) AS 'incremento_pct %'
+	((T3.unique_count_2021 - T2.unique_count_2020)) AS 'diference'
 FROM
 	T2 Left JOIN T3 ON T2.segment = T3.segment)
 	
